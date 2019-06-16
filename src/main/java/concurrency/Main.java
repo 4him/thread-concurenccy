@@ -2,7 +2,7 @@ package concurrency;
 
 public class Main {
 
-    public static void main() {
+    public static void main(String[] args) {
         Runnable target = new DownloadingService();
 
         Thread iPhone = new Thread(target, "iPhone");
@@ -11,13 +11,6 @@ public class Main {
         iPhone.start();
         iPad.start();
 
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        while (true){
-            main();
-            Thread.sleep(1000);
-        }
     }
 
 }
