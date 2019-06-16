@@ -1,4 +1,4 @@
-package concurrency;
+package concurrency.synchronization.current_object;
 
 public class Main {
 

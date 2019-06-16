@@ -1,4 +1,4 @@
-package concurrency;
+package concurrency.synchronization.current_object;
 
 public class DownloadingService implements Runnable {
 
@@ -9,13 +9,10 @@ public class DownloadingService implements Runnable {
     }
 
     private void downloadContent() {
-        String threadName = Thread.currentThread().getName();
-        while (true) {
-            synchronized (this) {
+        synchronized (this) {
+            while (true) {
                 if (remainingTraffic >= 25) {
-                    System.out.println(threadName + " is able to perform the operation");
                     remainingTraffic = remainingTraffic - 25;
-                    System.out.println("Downloaded from " + threadName + ". Remained traffic = " + remainingTraffic);
                 } else {
                     break;
                 }
