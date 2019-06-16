@@ -5,6 +5,10 @@ public class DownloadingService implements Runnable {
     private int remainingTraffic = 100;
 
     public void run() {
+        downloadContent();
+    }
+
+    private synchronized void downloadContent() {
         String threadName = Thread.currentThread().getName();
         while (true){
             if (remainingTraffic >= 25) {
