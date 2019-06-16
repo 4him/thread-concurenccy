@@ -24,15 +24,21 @@ public class ActionPerformer implements Runnable {
         System.out.println(threadName + " is going to get the lock for " + firstResource);
         synchronized (firstResource) {
             System.out.println(threadName + " possesses the lock for " + firstResource);
-            Thread.sleep(5000);
+
+            if (threadName.equals("Thread-0")) {
+                System.out.println("Thread-0 is going to wait for " + firstResource);
+                firstResource.wait();
+            }
 
             System.out.println(threadName + " is going to get the lock for " + secondResource);
             synchronized (secondResource) {
                 System.out.println(threadName + " possesses the lock for " + secondResource);
-                Thread.sleep(5000);
-                System.out.println(threadName + " is going to release the lock of " + secondResource);
+                System.out.println(threadName + " is going to release the lock of " + secondResource + " and call notify() on it");
+                secondResource.notify();
             }
             System.out.println(threadName + " is going to release the lock of " + firstResource);
+
+            //TODO try it here secondResource.notify();
         }
     }
 }
